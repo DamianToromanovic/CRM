@@ -1,0 +1,30 @@
+🔍 Mögliche Zielgruppen (Freiberufler & kleine Unternehmen)
+1. Selbstständige Dienstleister
+Beispiele: Coaches, Berater:innen, Personal Trainer, Texter:innen, Designer:innen
+
+Was sie brauchen: Kundeninfos speichern, Notizen zu Gesprächen, Aufgaben, einfache Angebots-/Rechnungsverwaltung
+
+2. Kreative Berufe
+Beispiele: Fotograf:innen, Webdesigner:innen, Videoproducer
+
+Was sie brauchen: Kundenübersicht, Projektstatus, Termine, Kommunikation (z. B. wer hat welche Wünsche geäußert)
+
+3. Handwerker oder Kleinbetriebe
+Beispiele: Elektriker, Maler, Gartenservice, Reinigungsfirmen
+
+Was sie brauchen: Kundenlisten, Auftragsverwaltung, Terminplanung, evtl. Rechnungen
+
+4. Vertrieb oder Sales-orientierte Einzelunternehmer
+Beispiele: Verkäufer:innen von digitalen Produkten, Network Marketing
+
+Was sie brauchen: Kontaktverfolgung, Follow-Ups, Reminder, Deals
+
+🎯 Was wollen diese Zielgruppen NICHT?
+Kein überladenes System wie Salesforce
+
+Keine komplizierte Einarbeitung
+
+Kein Abo mit zig Funktionen, die sie nie nutzen
+
+Am besten: mobil nutzbar, simpel, schnell
+

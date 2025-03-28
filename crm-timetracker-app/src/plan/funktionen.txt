@@ -1,0 +1,41 @@
+🔹 Kundenverwaltung
+Kunden anlegen, bearbeiten, löschen
+
+Kontaktdaten (Name, E-Mail, Telefonnummer, Adresse)
+
+Notizen zum Kunden
+
+Tags oder Kategorien (z. B. “potenzieller Kunde”, “Bestandskunde”)
+
+🔹 Aufgaben- oder To-Do-Management
+Aufgaben erstellen und bestimmten Kunden zuordnen
+
+Fälligkeitsdatum
+
+Status (offen, erledigt, in Bearbeitung)
+
+🔹 Interaktionen & Kommunikation
+Notizen oder Historie von Gesprächen/Meetings
+
+Übersicht über alle bisherigen Interaktionen mit einem Kunden
+
+🔹 Terminübersicht oder Kalender
+Kalenderansicht mit geplanten Terminen
+
+Option zur Verknüpfung mit Kunden
+
+🔹 Angebote & Rechnungen (kann später kommen)
+Angebote/Rechnungen erstellen und speichern
+
+PDF-Download oder E-Mail-Versand (eher mit Backend)
+
+🔹 Dashboard
+Übersicht über offene Aufgaben, neue Kunden, etc.
+
+Schnelle Zusammenfassung wichtiger Infos
+
+🔹 Suche & Filter
+Kunden suchen
+
+Nach Tags oder Kategorien filtern
+
