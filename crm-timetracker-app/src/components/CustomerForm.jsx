@@ -24,6 +24,7 @@ const CustomerForm = ({ onAddCustomer }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        required
         type="text"
         name="name"
         placeholder="Name"
@@ -31,6 +32,7 @@ const CustomerForm = ({ onAddCustomer }) => {
         onChange={(e) => setName(e.target.value)}
       />
       <input
+        required
         type="email"
         name="email"
         placeholder="Email"
@@ -38,12 +40,11 @@ const CustomerForm = ({ onAddCustomer }) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
+        required
         type="tel"
         name="phone"
         value={phone}
-        onChange={(e) => {
-          e.target.valvue;
-        }}
+        onChange={(e) => setPhone(e.target.value)}
         placeholder="Telefonnummer"
       />
       <button type="submit">Kunde hinzufügen</button>
