@@ -1,25 +1,49 @@
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
 
-const CustomerForm = ({ onAddCustomer }) => {
+const CustomerForm = ({ onAddCustomer, editingCustomer, onCancelEdit }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     const newCustomer = {
+      id: editingCustomer?.id ?? crypto.randomUUID(),
       name,
       email,
       phone,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
+    if (!editingCustomer) {
+      onAddCustomer(newCustomer);
 
-    onAddCustomer(newCustomer);
+      setName("");
+      setEmail("");
+      setPhone("");
+    } else if (editingCustomer) {
+      const updatedCustomer = {
+        ...editingCustomer,
+        name,
+        email,
+        phone,
+        updatedAt: new Date(),
+      };
 
-    setName("");
-    setEmail("");
-    setPhone("");
+      onAddCustomer(updatedCustomer);
+      onCancelEdit();
+      setName("");
+      setEmail("");
+      setPhone("");
+    }
   };
+
+  useEffect(() => {
+    if (editingCustomer) {
+      setName(editingCustomer.name);
+      setEmail(editingCustomer.email);
+      setPhone(editingCustomer.phone);
+    }
+  }, [editingCustomer]);
 
   return (
     <form onSubmit={handleSubmit}>
