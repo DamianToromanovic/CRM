@@ -1,41 +1,34 @@
-import CustomerForm from "./components/CustomerForm";
 import CustomerList from "./components/CustomerList";
 import { useState } from "react";
 
 function App() {
-  const [customers, setCustomer] = useState([]);
-  const [editingCustomer, setEditedCustomer] = useState(null);
-  const handleEditClick = (customer) => {
-    setEditedCustomer(customer);
-  };
-  const addCustomer = (newCustomer) => {
-    setCustomer([...customers, newCustomer]);
-  };
-  const handleDelete = (id) => {
-    const filtered = customers.filter((customer) => customer.id !== id);
-    setCustomer(filtered);
+  const [customers, setCustomers] = useState([]);
+  const [editedCustomer, setEditedCustomers] = useState(null);
+  const [showInputs, setShowInputs] = useState(false);
 
-    if (editingCustomer.id === id) {
-      setEditedCustomer(null);
-    }
-  };
+  const addCustomer = ({ name, email, phone }) => {
+    const newCustomer = {
+      id: crypto.randomUUID(),
+      name,
+      email,
+      phone,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
-  const cancelEdit = () => {
-    setEditedCustomer(null);
+    setCustomers([...customers, newCustomer]);
   };
 
   return (
     <>
       <h2>CRM</h2>
-      <CustomerForm
-        onCancelEdit={cancelEdit}
-        onAddCustomer={addCustomer}
-        editingCustomer={editingCustomer}
-      />
+      <button type="button" onClick={() => setShowInputs(true)}>
+        Kunde Hinzufügen
+      </button>
       <CustomerList
-        onDelete={handleDelete}
-        onEdit={handleEditClick}
         customers={customers}
+        addCustomer={addCustomer}
+        showInputs={showInputs}
       />
     </>
   );
