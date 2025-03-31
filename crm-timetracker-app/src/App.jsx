@@ -1,37 +1,23 @@
-import CustomerList from "./components/CustomerList";
+import CustomerList from "./components/ContactList";
 import { useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import React from "react";
 
-function App() {
-  const [customers, setCustomers] = useState([]);
-  const [editedCustomer, setEditedCustomers] = useState(null);
-  const [showInputs, setShowInputs] = useState(false);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/Kontakte",
+        element: <Kontakte />,
+      },
+    ],
+  },
+]);
 
-  const addCustomer = ({ name, email, phone }) => {
-    const newCustomer = {
-      id: crypto.randomUUID(),
-      name,
-      email,
-      phone,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+export default function App() {
+  const [contactList, setContactList] = useState([]);
 
-    setCustomers([...customers, newCustomer]);
-  };
-
-  return (
-    <>
-      <h2>CRM</h2>
-      <button type="button" onClick={() => setShowInputs(true)}>
-        Kunde Hinzufügen
-      </button>
-      <CustomerList
-        customers={customers}
-        addCustomer={addCustomer}
-        showInputs={showInputs}
-      />
-    </>
-  );
+  return <RouterProvider router={router} contactList={contactList} />;
 }
-
-export default App;
