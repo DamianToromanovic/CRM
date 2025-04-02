@@ -5,51 +5,89 @@ export default function ContactForm({
   setNewContact,
   handleSubmit,
   showForm,
+  editContact,
+  setEditContact,
 }) {
   const handleInput = (e) => {
-    setNewContact((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    if (editContact) {
+      setEditContact((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    } else {
+      setNewContact((prev) => ({
+        ...prev,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
   return (
     <form action="">
-      <label name="name" htmlFor=""></label>
-      <input
-        type="text"
-        name="name"
-        value={newContact.name}
-        onChange={handleInput}
-      />
-      <label name="name" htmlFor="">
+      <label name="name" htmlFor="name">
         Name
       </label>
-      <input type="text" name="name" onChange={handleInput} />
-      <label name="email" htmlFor="">
+      <input
+        value={(editContact ? editContact.name : newContact.name) || ""}
+        type="text"
+        name="name"
+        onChange={handleInput}
+      />
+      <label name="email" htmlFor="email">
         E-mail
       </label>
-      <input type="email" name="email" onChange={handleInput} />
-      <label htmlFor="" name="phone">
+      <input
+        value={(editContact ? editContact.email : newContact.email) || ""}
+        type="email"
+        name="email"
+        onChange={handleInput}
+      />
+      <label htmlFor="phone" name="phone">
         Telefonnummer
       </label>
-      <input type="tel" name="phone" onChange={handleInput} />
-      <label htmlFor="" name="status">
+      <input
+        value={(editContact ? editContact.phone : newContact.phone) || ""}
+        type="tel"
+        name="phone"
+        onChange={handleInput}
+      />
+      <label htmlFor="status" name="status">
         Status
       </label>
-      <input type="text" name="status" onChange={handleInput} />
-      <label htmlFor="" name="createdAt">
+      <input
+        value={(editContact ? editContact.status : newContact.status) || ""}
+        type="text"
+        name="status"
+        onChange={handleInput}
+      />
+      <label htmlFor="createdAt" name="createdAt">
         Erstellt am
       </label>
-      <input type="text" name="createdAt" onChange={handleInput} />
-      <label htmlFor="" name="lastContacted">
+      <input
+        value={
+          (editContact ? editContact.createdAt : newContact.createdAt) || ""
+        }
+        type="text"
+        name="createdAt"
+        onChange={handleInput}
+      />
+      <label htmlFor="lastContacted" name="lastContacted">
         Letzter Kontakt
       </label>
-      <input type="text" name="lastContacted" onChange={handleInput} />
+      <input
+        value={
+          (editContact
+            ? editContact.lastContacted
+            : newContact.lastContacted) || ""
+        }
+        type="text"
+        name="lastContacted"
+        onChange={handleInput}
+      />
       <button type="submit" onClick={handleSubmit}>
         Hinzufügen
       </button>
-      <button onClick={showForm} type="button">
+      <button onClick={() => showForm()} type="button">
         Abbrechen
       </button>
     </form>

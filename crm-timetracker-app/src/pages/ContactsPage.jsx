@@ -1,11 +1,16 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import ContactForm from "../components/ContactForm";
+import ContactList from "../components/ContactList";
+import { useState } from "react";
 
-export default function ContactsPage({ navi, setContactList }) {
-  const { contactList, setContactList, isShown, setIsShown } =
-    useOutletContext();
+export default function ContactsPage() {
+  const [contactList, setContactList] = useState([]);
+  const [isShown, setIsShown] = useState(false);
+
+  const [editContact, setEditContact] = useState(null);
   const emptyContact = {
+    id: Date.now(),
     name: "",
     email: "",
     phone: "",
@@ -16,10 +21,19 @@ export default function ContactsPage({ navi, setContactList }) {
   const [newContact, setNewContact] = useState(emptyContact);
 
   const handleSubmit = (e) => {
-    e.prevent.Default();
-    setContactList([...contactList, newContact]);
-    setNewContact(emptyContact);
-    setIsShown(false);
+    e.preventDefault();
+    if (editContact) {
+      const updatedList = contactList.map((contact) =>
+        contact.id === editContact.id ? editContact : contact
+      );
+      setContactList(updatedList);
+      setEditContact(null);
+      showForm();
+    } else {
+      setContactList([...contactList, newContact]);
+      setNewContact(emptyContact);
+      showForm();
+    }
   };
 
   const showForm = () => {
@@ -34,10 +48,23 @@ export default function ContactsPage({ navi, setContactList }) {
         </button>
       </div>
       {isShown ? (
-        <ContactForm handleSubmit={handleSubmit} showForm={showForm} />
+        <ContactForm
+          newContact={newContact}
+          setNewContact={setNewContact}
+          handleSubmit={handleSubmit}
+          showForm={showForm}
+          editContact={editContact}
+          setEditContact={setEditContact}
+          setIsShown={setIsShown}
+        />
       ) : (
-        <div></div>
+        <ContactList
+          contactList={contactList}
+          setEditContact={setEditContact}
+          showForm={showForm}
+        />
       )}
+      <Outlet />
     </>
   );
 }
