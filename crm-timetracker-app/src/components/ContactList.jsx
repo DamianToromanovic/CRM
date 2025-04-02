@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-export default function ContactList({ contactList, setEditContact, showForm }) {
+export default function ContactList({
+  contactList,
+  setEditContact,
+  showForm,
+  setContactList,
+}) {
   return (
     <section>
       {contactList.map((contact) => (
@@ -21,7 +26,14 @@ export default function ContactList({ contactList, setEditContact, showForm }) {
           >
             Bearbeiten
           </button>
-          <button onClick={()=>} type="button">Löschen</button>
+          <button
+            onClick={() => {
+              setContactList(contactList.filter((c) => c.id !== contact.id));
+            }}
+            type="button"
+          >
+            Löschen
+          </button>
         </div>
       ))}
     </section>

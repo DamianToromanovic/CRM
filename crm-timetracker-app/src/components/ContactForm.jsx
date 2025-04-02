@@ -85,7 +85,7 @@ export default function ContactForm({
         onChange={handleInput}
       />
       <button type="submit" onClick={handleSubmit}>
-        Hinzufügen
+        Speichern
       </button>
       <button onClick={() => showForm()} type="button">
         Abbrechen

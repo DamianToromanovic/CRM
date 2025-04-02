@@ -62,6 +62,7 @@ export default function ContactsPage() {
           contactList={contactList}
           setEditContact={setEditContact}
           showForm={showForm}
+          setContactList={setContactList}
         />
       )}
       <Outlet />
