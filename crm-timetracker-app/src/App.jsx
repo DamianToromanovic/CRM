@@ -1,23 +1,29 @@
 import CustomerList from "./components/ContactList";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { RouterProvider } from "react-router-dom";
 import React from "react";
+import ContactsPage from "./pages/ContactsPage";
+import ContactForm from "./components/ContactForm";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    children: [
+    Children: [
       {
-        path: "/Kontakte",
-        element: <Kontakte />,
+        path: "contacts",
+        element: <ContactsPage />,
+        Children: [
+          {
+            path: "contact-form",
+            element: <CreateContactPage />,
+          },
+        ],
       },
     ],
   },
 ]);
 
 export default function App() {
-  const [contactList, setContactList] = useState([]);
-
-  return <RouterProvider router={router} contactList={contactList} />;
+  return <RouterProvider router={router} />;
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ContactList({ contactList }) {
   return (
-    <div>
+    <section>
       {contactList.map((contact) => (
         <>
           <div>{contact.name}</div>
@@ -11,9 +11,8 @@ export default function ContactList({ contactList }) {
           <div>{contact.status}</div>
           <div>{contact.createdAt}</div>
           <div>{contact.lastContacted}</div>
-          <div>{contact.tags}</div>
         </>
       ))}
-    </div>
+    </section>
   );
 }

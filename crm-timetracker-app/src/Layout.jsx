@@ -1,19 +1,22 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
-export default function Layout({ contactList }) {
+export default function Layout() {
+  const [contactList, setContactList] = useState([]);
+  const [isShown, setIsShown] = useState(false);
+  const navi = useNavigate();
   return (
     <>
       <nav>
         <ul>
           <li>
-            <a href="">
-              <Link to="/kontakte">Kontakte</Link>
-            </a>
+            <Link to="/contacts-page">Kontakte</Link>
           </li>
         </ul>
       </nav>
-      <Outlet contactList={contactList} />
+      <Outlet
+        context={{ contactList, setContactList, navi, isShown, setIsShown }}
+      />
     </>
   );
 }
