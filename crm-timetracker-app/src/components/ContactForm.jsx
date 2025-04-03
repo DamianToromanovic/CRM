@@ -54,21 +54,35 @@ export default function ContactForm({
       <label htmlFor="status" name="status">
         Status
       </label>
-      <input
-        value={(editContact ? editContact.status : newContact.status) || ""}
-        type="text"
+      <select
         name="status"
+        value={(editContact ? editContact.status : newContact.status) || ""}
         onChange={handleInput}
-      />
+      >
+        <option value="">Bitte wählen</option>
+        <option value="aktiv">Aktiv</option>
+        <option value="inaktiv">Inaktiv</option>
+        <option value="offen">Offen</option>
+      </select>
+      <label htmlFor="category">Kategorie</label>
+      <select
+        name="category"
+        value={(editContact ? editContact.category : newContact.category) || ""}
+        onChange={handleInput}
+      >
+        <option value="">Bitte wählen</option>
+        <option value="kunde">Kunde</option>
+        <option value="lieferant">Lieferant</option>
+        <option value="partner">Partner</option>
+      </select>
       <label htmlFor="createdAt" name="createdAt">
         Erstellt am
       </label>
+      <label htmlFor="company">Firma</label>
       <input
-        value={
-          (editContact ? editContact.createdAt : newContact.createdAt) || ""
-        }
         type="text"
-        name="createdAt"
+        name="company"
+        value={(editContact ? editContact.company : newContact.company) || ""}
         onChange={handleInput}
       />
       <label htmlFor="lastContacted" name="lastContacted">
@@ -82,6 +96,12 @@ export default function ContactForm({
         }
         type="text"
         name="lastContacted"
+        onChange={handleInput}
+      />
+      <label htmlFor="notes">Notizen</label>
+      <textarea
+        name="notes"
+        value={(editContact ? editContact.notes : newContact.notes) || ""}
         onChange={handleInput}
       />
       <button type="submit" onClick={handleSubmit}>
