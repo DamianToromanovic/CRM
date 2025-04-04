@@ -8,3 +8,6 @@ Ari Razab
 13:21
 SQL, TS, Sequelize, PHP, Hetzner server
 firewall, port einrichtung, website selbst aufm server hosten
+
+burp suite, wireshark, nmap, metasploit, hydra, gobuster, tcpdump
+diese tools sind must haves
