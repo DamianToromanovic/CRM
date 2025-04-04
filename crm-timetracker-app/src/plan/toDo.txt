@@ -1,0 +1,10 @@
+https://reactrouter.com/7.4.1/upgrading/v6
+Ari Razab
+13:10
+https://redux.js.org/
+https://zustand.docs.pmnd.rs/getting-started/introduction
+https://zustand-demo.pmnd.rs/
+Ari Razab
+13:21
+SQL, TS, Sequelize, PHP, Hetzner server
+firewall, port einrichtung, website selbst aufm server hosten
