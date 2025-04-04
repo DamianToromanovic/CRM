@@ -11,3 +11,7 @@ firewall, port einrichtung, website selbst aufm server hosten
 
 burp suite, wireshark, nmap, metasploit, hydra, gobuster, tcpdump
 diese tools sind must haves
+
+cyber sicherheit: tryhackme, hackthebox
+
+https://www.hackerone.com/
