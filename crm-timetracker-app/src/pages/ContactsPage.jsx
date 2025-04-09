@@ -1,64 +1,22 @@
-import React from "react";
-import { Outlet, useOutletContext } from "react-router-dom";
-import ContactForm from "../components/ContactForm";
+import React, { useState, useReducer } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import ContactList from "../components/ContactList";
-import { useState, useEffect } from "react";
 import ContactSearchBar from "../components/ContactSearchBar";
+import ContactFilter from "../components/ContactFilter";
+
+import { useContactList } from "../context/ContactContext";
+import { contactReducer, initialContact } from "../reducers/contactReducer";
+import { filterReducer, initialFilters } from "../reducers/filterReducer";
 
 export default function ContactsPage() {
-  const [isShown, setIsShown] = useState(false);
+  const navigate = useNavigate();
+  const { contactList, dispatchContactList } = useContactList();
+  const [contactState, dispatchContact] = useReducer(
+    contactReducer,
+    initialContact
+  );
   const [searchedTerm, setsearchedTerm] = useState("");
-  const [filters, setFilter] = useState({
-    status: [],
-    company: [],
-    category: [],
-  });
-  const [editContact, setEditContact] = useState(null);
-  const [contactList, setContactList] = useState(() => {
-    const saved = localStorage.getItem("contacts");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contactList));
-  }, [contactList]);
-
-  const emptyContact = {
-    id: Date.now(),
-    name: "",
-    email: "",
-    phone: "",
-    status: "",
-    createdAt: "",
-    lastContacted: "",
-  };
-  const [newContact, setNewContact] = useState(emptyContact);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (editContact) {
-      const updatedList = contactList.map((contact) =>
-        contact.id === editContact.id ? editContact : contact
-      );
-      setContactList(updatedList);
-      setEditContact(null);
-      showForm();
-    } else {
-      const contactWithCreatedAt = {
-        ...newContact,
-        id: Date.now(),
-        createdAt: new Date().toISOString(),
-      };
-
-      setContactList([...contactList, contactWithCreatedAt]);
-      setNewContact(emptyContact);
-      showForm();
-    }
-  };
-
-  const showForm = () => {
-    isShown ? setIsShown(false) : setIsShown(true);
-  };
+  const [filters, dispatchFilters] = useReducer(filterReducer, initialFilters);
 
   let visibleContacts = contactList;
 
@@ -71,38 +29,37 @@ export default function ContactsPage() {
   }
 
   return (
-    <>
-      <div>
+    <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4">
+      <div className="max-w-6xl mx-auto space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+            Kontakte
+          </h1>
+          <button
+            onClick={() => navigate("/contacts/contact-form")}
+            type="button"
+            className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 self-start"
+          >
+            Kontakt Hinzufügen
+          </button>
+        </div>
+
         <ContactSearchBar
           contactList={contactList}
           setsearchedTerm={setsearchedTerm}
           searchedTerm={searchedTerm}
         />
-        <ContactFilter setFilter={setFilter} filters={filters} />
 
-        <button onClick={showForm} type="button">
-          Kontakt Hinzufügen
-        </button>
-      </div>
-      {isShown ? (
-        <ContactForm
-          newContact={newContact}
-          setNewContact={setNewContact}
-          handleSubmit={handleSubmit}
-          showForm={showForm}
-          editContact={editContact}
-          setEditContact={setEditContact}
-          setIsShown={setIsShown}
-        />
-      ) : (
+        <ContactFilter filters={filters} dispatchFilters={dispatchFilters} />
+
         <ContactList
           contactList={visibleContacts}
-          setEditContact={setEditContact}
-          showForm={showForm}
-          setContactList={setContactList}
+          dispatchContact={dispatchContact}
+          showForm={() => navigate("/contacts/contact-form")}
         />
-      )}
+      </div>
+
       <Outlet />
-    </>
+    </main>
   );
 }

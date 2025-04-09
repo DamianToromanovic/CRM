@@ -3,21 +3,16 @@ import React from "react";
 import ContactsPage from "./pages/ContactsPage";
 import CreateContactPage from "./pages/CreateContactPage";
 import Layout from "./Layout";
+import ContactDashboardPage from "./pages/ContactDashboardPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
-      {
-        path: "contacts",
-        element: <ContactsPage />,
-        children: [
-          {
-            path: "contact-form",
-            element: <CreateContactPage />,
-          },
-        ],
-      },
+      { path: "contacts", element: <ContactsPage /> },
+      { path: "contacts/contact-form", element: <CreateContactPage /> },
+      { path: "contacts/:contactId", element: <ContactDashboardPage /> },
     ],
   },
 ]);
