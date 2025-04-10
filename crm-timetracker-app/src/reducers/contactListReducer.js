@@ -10,6 +10,13 @@ export const contactListReducer = (state, action) => {
       return state.filter((c) =>
         c.id === action.payload.id ? action.payload : c
       );
+    case "TOGGLE_ISFAVORITE":
+      return state.map((contact) =>
+        contact.id === action.payload
+          ? { ...contact, isFavorite: !contact.isFavorite }
+          : contact
+      );
+
     case "RESET_ALL":
       return initialContactList;
 

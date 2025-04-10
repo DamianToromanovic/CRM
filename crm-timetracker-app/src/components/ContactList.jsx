@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactList } from "../context/ContactContext";
 
-export default function ContactList() {
+export default function ContactList({ dispatchContact }) {
   const navigate = useNavigate();
   const { contactList, dispatchContactList } = useContactList();
 
@@ -38,6 +38,21 @@ export default function ContactList() {
           </div>
 
           <div className="flex gap-2 justify-end sm:flex-col">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatchContactList({
+                  type: "TOGGLE_ISFAVORITE",
+                  payload: contact.id,
+                });
+              }}
+              type="button"
+              className={`text-3xl ${
+                contact.isFavorite ? "text-yellow-500" : "text-gray-400"
+              }`}
+            >
+              ★
+            </button>
             <button
               onClick={(e) => {
                 e.stopPropagation();

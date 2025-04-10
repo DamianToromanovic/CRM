@@ -9,6 +9,7 @@ export const initialContact = {
   notes: "",
   createdAt: "",
   lastContact: "",
+  isFavorite: false,
 };
 
 export function contactReducer(state, action) {
