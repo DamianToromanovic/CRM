@@ -23,7 +23,6 @@ export default function ContactForm({
         { label: "E-Mail", name: "email", type: "email" },
         { label: "Telefonnummer", name: "phone", type: "tel" },
         { label: "Firma", name: "company", type: "text" },
-        { label: "Letzter Kontakt", name: "lastContact", type: "text" },
       ].map(({ label, name, type }) => (
         <div key={name} className="space-y-1">
           <label
@@ -41,6 +40,21 @@ export default function ContactForm({
           />
         </div>
       ))}
+      <div className="space-y-1">
+        <label
+          htmlFor="lastContact"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+        >
+          Letzter Kontakt
+        </label>
+        <input
+          type="date"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+          name="lastContact"
+          value={contactState.lastContact || ""}
+          onChange={handleInput}
+        />
+      </div>
 
       <div className="space-y-1">
         <label

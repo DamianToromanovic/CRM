@@ -26,6 +26,7 @@ export default function CreateContactPage() {
         ? kontaktZumBearbeiten.createdAt
         : new Date().toISOString(),
     };
+    console.log(kontaktZumBearbeiten);
 
     dispatchContactList({
       type: kontaktZumBearbeiten ? "UPDATE" : "ADD",

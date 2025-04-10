@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactList } from "../context/ContactContext";
 
-export default function ContactList({ dispatchContact }) {
+export default function ContactList({ contactList }) {
   const navigate = useNavigate();
-  const { contactList, dispatchContactList } = useContactList();
+  const { dispatchContactList } = useContactList();
 
   return (
     <section className="max-w-4xl mx-auto mt-6 space-y-4">
@@ -30,11 +30,10 @@ export default function ContactList({ dispatchContact }) {
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Erstellt: {new Date(contact.createdAt).toLocaleDateString()}
             </div>
-            {contact.lastContacted && (
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                Letzter Kontakt: {contact.lastContacted}
-              </div>
-            )}
+
+            <div className="text-sm text-gray-500 dark:text-gray-400">
+              Letzter Kontakt: {contact.lastContact}
+            </div>
           </div>
 
           <div className="flex gap-2 justify-end sm:flex-col">

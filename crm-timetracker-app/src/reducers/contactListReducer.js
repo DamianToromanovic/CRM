@@ -7,9 +7,10 @@ export const contactListReducer = (state, action) => {
     case "DELETE":
       return state.filter((contact) => contact.id !== action.payload.id);
     case "UPDATE":
-      return state.filter((c) =>
+      return state.map((c) =>
         c.id === action.payload.id ? action.payload : c
       );
+
     case "TOGGLE_ISFAVORITE":
       return state.map((contact) =>
         contact.id === action.payload
