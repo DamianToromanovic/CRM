@@ -24,9 +24,18 @@ export default function ContactsPage() {
     visibleContacts = visibleContacts.filter((c) =>
       c.name.toLowerCase().includes(searchedTerm.toLowerCase())
     );
-  } else if (filters.length > 1) {
-    visibleContacts = filters;
   }
+
+  visibleContacts = visibleContacts.filter((contact) => {
+    return (
+      (filters.status.length === 0 ||
+        filters.status.includes(contact.status)) &&
+      (filters.category.length === 0 ||
+        filters.category.includes(contact.category)) &&
+      (filters.company.length === 0 ||
+        filters.company.includes(contact.company))
+    );
+  });
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4">

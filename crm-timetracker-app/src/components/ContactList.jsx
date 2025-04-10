@@ -2,13 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useContactList } from "../context/ContactContext";
 
-export default function ContactList({
-  contactList,
-  dispatchContact,
-  showForm,
-}) {
+export default function ContactList() {
   const navigate = useNavigate();
-  const { dispatchContactList } = useContactList();
+  const { contactList, dispatchContactList } = useContactList();
 
   return (
     <section className="max-w-4xl mx-auto mt-6 space-y-4">
@@ -45,8 +41,7 @@ export default function ContactList({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                dispatchContact({ type: "LOAD_CONTACT", payload: contact });
-                showForm();
+                navigate(`/contacts/contact-form/${contact.id}`);
               }}
               type="button"
               className="px-3 py-1 rounded-lg bg-blue-500 text-white hover:bg-blue-600 text-sm"

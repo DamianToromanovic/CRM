@@ -103,6 +103,12 @@ export default function ContactFilter({ filters, dispatchFilters }) {
               </label>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={() => dispatchFilters({ type: "RESET_FILTERS" })}
+          >
+            Alle Filter zurücksetzen
+          </button>
         </div>
       )}
     </div>

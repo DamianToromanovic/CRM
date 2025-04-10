@@ -18,7 +18,6 @@ export function filterReducer(state, action) {
 
     case "RESET_FILTERS":
       return initialFilters;
-
     default:
       return state;
   }
