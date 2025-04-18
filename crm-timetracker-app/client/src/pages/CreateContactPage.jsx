@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 import ContactForm from "../components/ContactForm";
 import { contactReducer, initialContact } from "../reducers/contactReducer";
 import { useContactList } from "../context/ContactContext";

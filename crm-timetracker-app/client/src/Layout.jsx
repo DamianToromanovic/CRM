@@ -12,7 +12,10 @@ export default function Layout() {
               Kontakte
             </Link>
           </li>
-          <li className="text-gray-400">Platzhalter</li>
+          <li>
+            <Link to="task-board">Task-Board</Link>
+          </li>
+
           <li className="text-gray-400">Platzhalter</li>
         </ul>
         <ThemeToggle />

@@ -4,6 +4,7 @@ import ContactsPage from "./pages/ContactsPage";
 import CreateContactPage from "./pages/CreateContactPage";
 import Layout from "./Layout";
 import ContactDashboardPage from "./pages/ContactDashboardPage";
+import TaskBoard from "./pages/TaskBoard";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: "contacts/contact-form", element: <CreateContactPage /> },
       { path: "contacts/contact-form/:id", element: <CreateContactPage /> },
       { path: "contacts/:contactId", element: <ContactDashboardPage /> },
+      { path: "task-board", element: <TaskBoard /> },
     ],
   },
 ]);
