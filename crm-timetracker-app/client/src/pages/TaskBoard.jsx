@@ -1,39 +1,40 @@
-import React from "react";
-import { useState } from "react";
-import Projects from "../components/Projects";
-import Customer from "../components/Customer";
-import Teams from "../components/Teams";
+import React, { useState } from "react";
+import Todo from "../components/Todo.jsx";
+import InProgress from "../components/InProgress.jsx";
+import Done from "../components/Done.jsx";
+import Form from "../components/Form.jsx";
 
 export default function TaskBoard() {
-  const [activeTab, setActiveTab] = useState("customer");
-  let content = null;
-
-  switch (activeTab) {
-    case "customer":
-      content = <Customer />;
-      break;
-    case "teams":
-      content = <Teams />;
-      break;
-    case "projects":
-      content = <Projects />;
-      break;
-    default:
-      content = null;
-  }
-
+  const [showForm, setShowForm] = useState(false);
+  const initalForm = {
+    title: "",
+    description: "",
+    status: "",
+  };
+  const [inputVal, setInputVal] = useState(initalForm);
+  const [taskList, setTaskList] = useState([]);
   return (
     <>
-      <button onClick={() => setActiveTab("customer")} type="button">
-        Kunde
-      </button>
-      <button onClick={() => setActiveTab("teams")} type="button">
-        Teams
-      </button>
-      <button onClick={() => setActiveTab("projects")} type="button">
-        Projekt
-      </button>
-      <div>{content}</div>
+      <div>
+        <button onClick={() => setShowForm(true)} type="button">
+          Add Task
+        </button>
+      </div>
+      <div>
+        <Todo />
+        <InProgress taskList={taskList} />
+        <Done />
+      </div>
+      {showForm && (
+        <Form
+          taskList={taskList}
+          setTaskList={setTaskList}
+          setInputVal={setInputVal}
+          inputVal={inputVal}
+          initalForm={initalForm}
+          setShowForm={setShowForm}
+        ></Form>
+      )}
     </>
   );
 }
