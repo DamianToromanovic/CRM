@@ -6,12 +6,12 @@ import Form from "../components/Form.jsx";
 
 export default function TaskBoard() {
   const [showForm, setShowForm] = useState(false);
-  const initalForm = {
+  const initialForm = {
     title: "",
     description: "",
     status: "",
   };
-  const [inputVal, setInputVal] = useState(initalForm);
+  const [inputVal, setInputVal] = useState(initialForm);
   const [taskList, setTaskList] = useState([]);
   return (
     <>
@@ -20,21 +20,27 @@ export default function TaskBoard() {
           Add Task
         </button>
       </div>
-      <div>
-        <Todo />
-        <InProgress taskList={taskList} />
-        <Done />
-      </div>
       {showForm && (
         <Form
           taskList={taskList}
           setTaskList={setTaskList}
           setInputVal={setInputVal}
           inputVal={inputVal}
-          initalForm={initalForm}
+          initialForm={initialForm}
           setShowForm={setShowForm}
-        ></Form>
+        />
       )}
+      <div className="grid grid-cols-3 gap-4 w-full mx-auto p-4 min-h-screen">
+        <div>
+          <Todo setTaskList={setTaskList} taskList={taskList} />
+        </div>
+        <div>
+          <InProgress setTaskList={setTaskList} taskList={taskList} />
+        </div>
+        <div>
+          <Done setTaskList={setTaskList} taskList={taskList} />
+        </div>
+      </div>
     </>
   );
 }

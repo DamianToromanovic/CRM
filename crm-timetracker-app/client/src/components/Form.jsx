@@ -28,7 +28,7 @@ export default function Form({
 
   return (
     <>
-      <form onSubmit={submit} action="">
+      <form className="" onSubmit={submit} action="">
         <label htmlFor="title">Titel</label>
         <input onChange={updateVals} type="text" name="title" id="title" />
         <label htmlFor="description">Beschreibung</label>
