@@ -1,5 +1,8 @@
 require("dotenv").config();
 const express = require("express");
+// Express hilft webserver zu erstellen
+// damit kann man ganz einfach http routen bauen
+// auf requests reagieren und responses zurückgeben
 const mongoose = require("mongoose");
 
 const app = express();

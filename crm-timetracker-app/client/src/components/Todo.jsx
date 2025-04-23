@@ -17,6 +17,7 @@ export default function Todo({ taskList, setTaskList }) {
           todoObject.status !== "done" && (
             <div
               onDrop={handleDrop}
+              onDragOver={(e) => e.preventDefault()}
               draggable={true}
               onDragStart={(e) => {
                 e.dataTransfer.setData("plain/text", todoObject.id);

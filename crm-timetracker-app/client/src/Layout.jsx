@@ -4,23 +4,32 @@ import ThemeToggle from "./components/ThemeToggle";
 
 export default function Layout() {
   return (
-    <>
-      <nav className="flex justify-between items-center px-4 py-2 bg-white dark:bg-gray-900 border-b dark:border-gray-700">
-        <ul className="flex gap-4">
+    <div className="flex h-screen">
+      <aside className="w-64 bg-white dark:bg-gray-900 border-r dark:border-gray-700 p-4">
+        <ul className="space-y-4">
           <li>
-            <Link to="contacts" className="text-gray-800 dark:text-white">
+            <Link to="contacts" className="block text-gray-800 dark:text-white">
               Kontakte
             </Link>
           </li>
           <li>
-            <Link to="task-board">Task-Board</Link>
+            <Link
+              to="task-board"
+              className="block text-gray-800 dark:text-white"
+            >
+              Task-Board
+            </Link>
           </li>
-
           <li className="text-gray-400">Platzhalter</li>
         </ul>
-        <ThemeToggle />
-      </nav>
-      <Outlet />
-    </>
+        <div className="mt-auto pt-6">
+          <ThemeToggle />
+        </div>
+      </aside>
+
+      <main className="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-gray-800">
+        <Outlet />
+      </main>
+    </div>
   );
 }
